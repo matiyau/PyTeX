@@ -12,6 +12,23 @@ from . import utils as ut
 
 
 def _get_tabular(tab, col_style=None):
+    """
+    Generate LaTeX tabular environment code for a DataFrame.
+
+    Parameters
+    ----------
+    tab : pandas.DataFrame
+        DataFrame for which the LaTeX tabularenvironment will be created.
+    col_style : str, optional
+        LaTeX column formatting for the table. If None, |c|c|---|c| will be
+        used. The default is None.
+
+    Returns
+    -------
+    ltx : str
+        LaTeX code for the tabular environment.
+
+    """
     if col_style is None:
         col_style = "|"
         for col in tab.columns:
@@ -32,6 +49,30 @@ def _get_tabular(tab, col_style=None):
 
 
 def get_latex(tab, pos="h!", caption=None, col_style=None, ref=None):
+    """
+    Convert a DataFrame to a LaTeX Table
+
+    Parameters
+    ----------
+    tab : pandas.DataFrame
+        DataFrame for which the LaTeX table will be created.
+    pos : str, optional
+        LaTeX positioning scheme. The default is "h!".
+    caption : str or None, optional
+        Caption for the table. If None, the caption will not be added to the
+        LaTeX table code. The default is None.
+    col_style : str or None, optional
+        LaTeX column formatting for the table. The default is None.
+    ref : str or None, optional
+        Label for adding a reference tag to the table. If None, no label will
+        be added. The default is None.
+
+    Returns
+    -------
+    ltx : str
+        LaTeX code for the table.
+
+    """
     pos = "[" + pos + "]"
     ltx = _get_tabular(tab, col_style)
 
