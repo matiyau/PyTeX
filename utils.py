@@ -6,6 +6,7 @@ Created on Wed Apr 14 17:54:01 2021
 @author: n7
 """
 
+import numpy as np
 import os
 
 
@@ -33,6 +34,23 @@ def capt(content):
 
 def label(content):
     return tagln("label", content)
+
+
+def inline_math_pts(content):
+    return np.array([i for i in range(0, len(content)) if content[i] == "$"])
+
+
+def escape(content):
+    non_math_pts = np.concatenate([[-1] + inline_math_pts(content) +
+                                   [len(content)]]).reshape(-1, 2)
+    non_math_pts[:, 0] += 1
+    for pts in non_math_pts:
+        pre = content[:pts[0]]
+        main = content[pts[0]:pts[1]]
+        post = content[pts[1]:]
+        main = main.replace("&", "\\&").replace("%", "\\%").replace("_", "\\_")
+        content = pre + main + post
+    return content
 
 
 def encaps(env, content, arg=None, center=False, caption=None,
