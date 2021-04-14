@@ -19,7 +19,7 @@ def _get_tabular(tab, col_style=None):
     ----------
     tab : pandas.DataFrame
         DataFrame for which the LaTeX tabularenvironment will be created.
-    col_style : str, optional
+    col_style : str or None, optional
         LaTeX column formatting for the table. If None, |c|c|---|c| will be
         used. The default is None.
 
@@ -64,8 +64,8 @@ def get_latex(tab, pos="h!", caption=None, col_style=None, ref=None):
     col_style : str or None, optional
         LaTeX column formatting for the table. The default is None.
     ref : str or None, optional
-        Label for adding a reference tag to the table. If None, no label will
-        be added. The default is None.
+        Tag for adding a reference label to the table. If None, no label is
+        added. The default is None.
 
     Returns
     -------
