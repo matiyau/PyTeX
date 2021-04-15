@@ -21,7 +21,7 @@ def tag(name, content, arg=None, newline=False):
         Name of the LaTeX command.
     content : str
         Content to be put inside the command braces.
-    arg or None : str, optional
+    arg : str or None, optional
         Additional argument to be added after the command. The default is None.
     newline : bool, optional
         Specifiec whether to add a line-break after the command.
@@ -33,9 +33,14 @@ def tag(name, content, arg=None, newline=False):
         LaTeX code for the given command parameters.
 
     """
-    return "\\" + name + "{" + content + "}" + \
-        (arg if arg is not None else "") + \
-        (os.linesep if newline is True else "")
+    if arg is None:
+        arg = ""
+    else:
+        if not ((arg[0] == "{" and arg[-1] == "}") or
+                (arg[0] == "[" and arg[-1] == "]")):
+            arg = "{" + arg + "}"
+    return "\\" if name[0] != "\\" else "" + name + "{" + content + "}" + \
+        arg + (os.linesep if newline is True else "")
 
 
 def tagln(name, content, arg=None):
