@@ -6,7 +6,7 @@ Created on Wed Apr 14 19:46:52 2021
 @author: n7
 """
 
-import utils as ut
+from . import utils as ut
 import os
 
 
@@ -37,10 +37,10 @@ def incl_image(path, width_ratio=1):
     return ut.tagln(cmd, path)
 
 
-def get_latex(filenames, loc="Body/figures", stretch=False,
+def fig(filenames, loc="Body/figures", stretch=False,
               pos="h!", caption=None, ref=None):
     """
-
+    Generate LaTeX code for figure.
 
     Parameters
     ----------

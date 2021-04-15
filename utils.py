@@ -39,7 +39,7 @@ def tag(name, content, arg=None, newline=False):
         if not ((arg[0] == "{" and arg[-1] == "}") or
                 (arg[0] == "[" and arg[-1] == "]")):
             arg = "{" + arg + "}"
-    return "\\" if name[0] != "\\" else "" + name + "{" + content + "}" + \
+    return ("\\" if name[0] != "\\" else "") + name + "{" + content + "}" + \
         arg + (os.linesep if newline is True else "")
 
 

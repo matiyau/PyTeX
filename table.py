@@ -11,13 +11,13 @@ from . import text as tx
 from . import utils as ut
 
 
-def _get_tabular(tab, col_style=None):
+def tabular(df, col_style=None):
     """
     Generate LaTeX tabular environment code for a DataFrame.
 
     Parameters
     ----------
-    tab : pandas.DataFrame
+    df : pandas.DataFrame
         DataFrame for which the LaTeX tabularenvironment will be created.
     col_style : str or None, optional
         LaTeX column formatting for the table. If None, |c|c|---|c| will be
@@ -34,10 +34,10 @@ def _get_tabular(tab, col_style=None):
         for col in tab.columns:
             col_style += "c|"
 
-    header = [tx.bf(col) for col in tab.columns]
+    header = [tx.bf(col) for col in df.columns]
 
-    ltx = tab.to_latex(header=header, index=False,
-                       column_format=col_style, escape=False)
+    ltx = df.to_latex(header=header, index=False,
+                      column_format=col_style, escape=False)
 
     ltx = ltx.replace(r"\toprule",
                       r"\hline").replace(r"\midrule" + os.linesep,
@@ -48,13 +48,13 @@ def _get_tabular(tab, col_style=None):
     return ltx
 
 
-def get_latex(tab, pos="h!", caption=None, col_style=None, ref=None):
+def tab(df, pos="h!", caption=None, col_style=None, ref=None):
     """
     Convert a DataFrame to a LaTeX Table
 
     Parameters
     ----------
-    tab : pandas.DataFrame
+    df : pandas.DataFrame
         DataFrame for which the LaTeX table will be created.
     pos : str, optional
         LaTeX positioning scheme. The default is "h!".
@@ -74,7 +74,7 @@ def get_latex(tab, pos="h!", caption=None, col_style=None, ref=None):
 
     """
     pos = "[" + pos + "]"
-    ltx = _get_tabular(tab, col_style)
+    ltx = tabular(df, col_style)
 
     # Encapsulate in "table" tags
     ltx = ut.encapsln("table", ltx, pos, True, caption, "top", ref)

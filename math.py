@@ -6,7 +6,8 @@ Created on Wed Apr 14 22:45:08 2021
 @author: n7
 """
 
-import utils as ut
+import os
+from . import utils as ut
 
 
 def sbscr(content):
@@ -163,3 +164,66 @@ def times(a, b):
 
     """
     return a + r" \times " + b
+
+
+def eqn(eq, caption=None, ref=None, tag=False):
+    """
+    Generate LaTeX code for equation.
+
+    Parameters
+    ----------
+    eq : str
+        Content to be encapsulated in the equation tags.
+    caption : str or None, optional
+        Caption for the equation. If None, the caption will not be added to the
+        LaTeX equation code. The default is None.
+    ref : str or None, optional
+        Label for adding a reference tag to the equation. If None, no label
+        will be added. The default is None.
+    tag : bool, optional
+        Specifies whether equation number should be added.
+
+    Returns
+    -------
+    str
+        LaTeX code for the equation.
+
+    """
+    if tag is False:
+        eq += r" \notag"
+    return ut.encapsln("equation", eq + os.linesep, None, False, caption,
+                       "bottom", ref)
+
+
+def align(eqs, caption=None, ref=None, tag=False):
+    """
+    Generate LaTeX code for align environment.
+
+    Parameters
+    ----------
+    eqs: list
+        List of equations to be included in the align environment.
+    caption : str or None, optional
+        Caption for the align environment. If None, the caption will not be
+        added to the LaTeX align code. The default is None.
+    ref : str or None, optional
+        Label for adding a reference tag to the align environment. If None,
+        no label will be added. The default is None.
+    tag : bool, optional
+        Specifies whether equation numbers should be added.
+
+    Returns
+    -------
+    str
+        LaTeX align environment.
+
+    """
+    signs = ["=", "<", ">", r"\leq", r"\geq"]
+    line_end = " " + (r"\notag" if tag is False else "") + r"\\" + os.linesep
+    ltx = ""
+    for eq in eqs:
+        sign_pts = [eq.find(sign) for sign in signs]
+        break_pt = min([pt for pt in sign_pts if pt >= 0])
+        ltx += (eq[:break_pt] + "&" + eq[break_pt:] + line_end)
+    ltx = "".join(ltx.rsplit(r"\\", 1))
+    return ut.encapsln("align", ltx, None, False, caption, "bottom", ref)
