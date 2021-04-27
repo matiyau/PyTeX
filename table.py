@@ -31,7 +31,7 @@ def tabular(df, col_style=None):
     """
     if col_style is None:
         col_style = "|"
-        for col in tab.columns:
+        for col in df.columns:
             col_style += "c|"
 
     header = [tx.bf(col) for col in df.columns]

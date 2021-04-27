@@ -217,8 +217,8 @@ def encaps(env, content, arg=None, center=False, caption=None,
     ref : str or None, optional
         Tag for adding a reference label to the table. If None, no label is
         be added. The default is None.
-    addl_newline : str, optional
-        Specifiec whether to add a line-break after the ending the environment.
+    addl_newline : bool, optional
+        Specifies whether to add a line-break after the ending the environment.
         The default is False.
 
     Returns
@@ -235,6 +235,8 @@ def encaps(env, content, arg=None, center=False, caption=None,
             prefix += capt(caption)
         elif (capt_pos == "bottom"):
             suffix = capt(caption) + suffix
+    if addl_newline:
+        suffix += "\n"
     ltx = prefix + content + suffix
     return ltx
 

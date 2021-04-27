@@ -126,6 +126,60 @@ def ceil(content):
     return ut.tag("ceil", content)
 
 
+def curved(content):
+    """
+    Generate LaTeX code for data within curved braces.
+
+    Parameters
+    ----------
+    content : str
+        String to be encapsulated within the curved braces.
+
+    Returns
+    -------
+    str
+        LaTeX code for data within curved braces.
+
+    """
+    return "(" + content + ")"
+
+
+def box(content):
+    """
+    Generate LaTeX code for data within box braces.
+
+    Parameters
+    ----------
+    content : str
+        String to be encapsulated within the box braces.
+
+    Returns
+    -------
+    str
+        LaTeX code for data within box braces.
+
+    """
+    return "[" + content + "]"
+
+
+def curly(content):
+    """
+    Generate LaTeX code for data within curly braces.
+
+    Parameters
+    ----------
+    content : str
+        String to be encapsulated within the curly braces.
+
+    Returns
+    -------
+    str
+        LaTeX code for data within curly braces.
+
+    """
+    return "\\{" + content + "\\}"
+
+
 def frac(n, d):
     """
     Generate LaTeX fraction.
