@@ -281,3 +281,21 @@ def align(eqs, caption=None, ref=None, tag=False):
         ltx += (eq[:break_pt] + "&" + eq[break_pt:] + line_end)
     ltx = "".join(ltx.rsplit(r"\\", 1))
     return ut.encapsln("align", ltx, None, False, caption, "bottom", ref)
+
+
+def inline(content):
+    """
+    Generate LaTeX code for inline math content.
+
+    Parameters
+    ----------
+    content : str
+        String to be encapsulated within the $ sign.
+
+    Returns
+    -------
+    str
+        LaTeX code for inline math.
+
+    """
+    return "$" + content + "$"
