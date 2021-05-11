@@ -68,6 +68,44 @@ def sigma(sb=None, sp=None):
     return r"\sum" + sbscr(sb) + spscr(sp)
 
 
+def mxm(sb=None):
+    """
+    Generate LaTeX code for max function.
+
+    Parameters
+    ----------
+    sb : str or None, optional
+        Subscript content (constraint) for max. If None, no
+        subscript is added. The default is None.
+
+    Returns
+    -------
+    str
+        LaTeX code for summation sign.
+
+    """
+    return r"\max" + sbscr(sb)
+
+
+def mnm(sb=None):
+    """
+    Generate LaTeX code for min function.
+
+    Parameters
+    ----------
+    sb : str or None, optional
+        Subscript content (constraint) for the min. If None, no
+        subscript is added. The default is None.
+
+    Returns
+    -------
+    str
+        LaTeX code for summation sign.
+
+    """
+    return r"\min" + sbscr(sb)
+
+
 def Pi(sb=None, sp=None):
     """
     Generate LaTeX code for product sign.
