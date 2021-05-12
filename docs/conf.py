@@ -17,7 +17,7 @@ from pygit2 import Repository
 _SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 sys.path.insert(0, os.path.join(_SCRIPT_DIR, '../'))
-sys.path.insert(0, os.path.join(_SCRIPT_DIR, '../pyltx'))
+# sys.path.insert(0, os.path.join(_SCRIPT_DIR, '../pyltx'))
 
 # -- Project information -----------------------------------------------------
 
