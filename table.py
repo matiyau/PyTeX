@@ -11,7 +11,7 @@ from . import text as tx
 from . import utils as ut
 
 
-def tabular(df, col_style=None):
+def tabular(df, col_style=None, index=False):
     """
     Generate LaTeX tabular environment code for a DataFrame.
 
@@ -22,6 +22,9 @@ def tabular(df, col_style=None):
     col_style : str or None, optional
         LaTeX column formatting for the table. If None, |c|c|---|c| will be
         used. The default is None.
+    index: bool, optional
+        Specifies whether the row indices should be included as a separate
+        column. The default is False.
 
     Returns
     -------
@@ -33,10 +36,12 @@ def tabular(df, col_style=None):
         col_style = "|"
         for col in df.columns:
             col_style += "c|"
+        if (index):
+            col_style += "c|"
 
     header = [tx.bf(col) for col in df.columns]
 
-    ltx = df.to_latex(header=header, index=False,
+    ltx = df.to_latex(header=header, index=index,
                       column_format=col_style, escape=False)
 
     ltx = ltx.replace(r"\toprule",
@@ -48,7 +53,7 @@ def tabular(df, col_style=None):
     return ltx
 
 
-def tab(df, pos="h!", caption=None, col_style=None, ref=None):
+def tab(df, pos="h!", caption=None, col_style=None, index=False, ref=None):
     """
     Convert a DataFrame to a LaTeX Table
 
@@ -63,6 +68,9 @@ def tab(df, pos="h!", caption=None, col_style=None, ref=None):
         LaTeX table code. The default is None.
     col_style : str or None, optional
         LaTeX column formatting for the table. The default is None.
+    index: bool, optional
+        Specifies whether the row indices should be included as a separate
+        column. The default is False.
     ref : str or None, optional
         Tag for adding a reference label to the table. If None, no label is
         added. The default is None.
