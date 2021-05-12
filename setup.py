@@ -7,8 +7,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="pyltx", # Replace with your own username
-    version="0.1.2",
+    name="pyltx",  # Replace with your own username
+    version="0.1.3",
     author="Nishad Mandlik",
     author_email="mandliksg@gmail.com",
     description="LaTeX generation for tables, math and figures",
@@ -24,6 +24,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     packages=setuptools.find_packages(),
-    install_reqs = required,
+    install_reqs=required,
     python_requires=">=3.6",
 )
