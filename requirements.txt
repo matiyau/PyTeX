@@ -1,5 +1,5 @@
-numpy
 pygit2
+numpy
 sphinxcontrib_napoleon
 sphinx_rtd_theme
 m2r2

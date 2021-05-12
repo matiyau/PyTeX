@@ -8,7 +8,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="pyltx",  # Replace with your own username
-    version="0.1.3",
+    version="0.1.4",
     author="Nishad Mandlik",
     author_email="mandliksg@gmail.com",
     description="LaTeX generation for tables, math and figures",
@@ -16,6 +16,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/matiyau/pyltx",
     project_urls={
+        "Documentation": "https://pyltx.rtfd.io",
         "Bug Tracker": "https://github.com/matiyau/pyltx/issues",
     },
     classifiers=[
