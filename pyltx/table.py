@@ -12,7 +12,7 @@ from . import utils as ut
 
 
 def tabular(df, col_style=None, index=False):
-    """
+    r"""
     Generate LaTeX tabular environment code for a DataFrame.
 
     Parameters
@@ -20,7 +20,7 @@ def tabular(df, col_style=None, index=False):
     df : pandas.DataFrame
         DataFrame for which the LaTeX tabularenvironment will be created.
     col_style : str or None, optional
-        LaTeX column formatting for the table. If None, |c|c|---|c| will be
+        LaTeX column formatting for the table. If None, \|c\|c\|---\|c\| will be
         used. The default is None.
     index: bool, optional
         Specifies whether the row indices should be included as a separate
@@ -35,9 +35,9 @@ def tabular(df, col_style=None, index=False):
     if col_style is None:
         col_style = "|"
         for col in df.columns:
-            col_style += "c|"
+            col_style += r"c|"
         if (index):
-            col_style += "c|"
+            col_style += r"c|"
 
     header = [tx.bf(col) for col in df.columns]
 
